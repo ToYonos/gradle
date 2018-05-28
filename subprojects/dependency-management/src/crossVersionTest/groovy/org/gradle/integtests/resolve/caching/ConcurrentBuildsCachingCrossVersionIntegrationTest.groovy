@@ -23,7 +23,10 @@ import org.gradle.test.fixtures.server.http.BlockingHttpServer
 import org.gradle.util.GradleVersion
 import org.junit.Rule
 
-@IgnoreVersions({ it.artifactCacheLayoutVersion == DefaultArtifactCacheMetadata.CACHE_LAYOUT_VERSION })
+@IgnoreVersions({
+    it.artifactCacheLayoutVersion == DefaultArtifactCacheMetadata.CACHE_LAYOUT_VERSION ||
+        it.artifactCacheLayoutVersion.major != DefaultArtifactCacheMetadata.CACHE_LAYOUT_VERSION.major
+})
 class ConcurrentBuildsCachingCrossVersionIntegrationTest extends AbstractCacheReuseCrossVersionIntegrationTest {
     @Rule BlockingHttpServer blockingServer = new BlockingHttpServer()
 

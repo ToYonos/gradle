@@ -24,10 +24,10 @@ class CacheLayoutTest extends Specification {
         CacheLayout cacheLayout = CacheLayout.ROOT
 
         then:
-        cacheLayout.key == 'modules-2'
-        cacheLayout.version == VersionNumber.parse("2.0.0")
-        cacheLayout.formattedVersion == '2'
-        cacheLayout.getPath(new File('some/dir')) == new File('some/dir/modules-2')
+        cacheLayout.key == 'modules-3'
+        cacheLayout.version == VersionNumber.parse("3.0.0")
+        cacheLayout.formattedVersion == '3'
+        cacheLayout.getPath(new File('some/dir')) == new File('some/dir/modules-3')
     }
 
     def "use file store layout"() {
@@ -35,10 +35,10 @@ class CacheLayoutTest extends Specification {
         CacheLayout cacheLayout = CacheLayout.FILE_STORE
 
         then:
-        cacheLayout.key == 'files-2.1'
-        cacheLayout.version == VersionNumber.parse("2.1.0")
-        cacheLayout.formattedVersion == '2.1'
-        cacheLayout.getPath(new File('some/dir')) == new File('some/dir/files-2.1')
+        cacheLayout.key == 'files-3.1'
+        cacheLayout.version == VersionNumber.parse("3.1.0")
+        cacheLayout.formattedVersion == '3.1'
+        cacheLayout.getPath(new File('some/dir')) == new File('some/dir/files-3.1')
     }
 
     def "use metadata store layout"() {
@@ -46,10 +46,10 @@ class CacheLayoutTest extends Specification {
         CacheLayout cacheLayout = CacheLayout.META_DATA
 
         then:
-        cacheLayout.key == 'metadata-2.58'
-        cacheLayout.version == VersionNumber.parse("2.58.0")
-        cacheLayout.formattedVersion == '2.58'
-        cacheLayout.getPath(new File('some/dir')) == new File('some/dir/metadata-2.58')
+        cacheLayout.key == 'metadata-3.1'
+        cacheLayout.version == VersionNumber.parse("3.1.0")
+        cacheLayout.formattedVersion == '3.1'
+        cacheLayout.getPath(new File('some/dir')) == new File('some/dir/metadata-3.1')
     }
 
     def "use transforms layout"() {

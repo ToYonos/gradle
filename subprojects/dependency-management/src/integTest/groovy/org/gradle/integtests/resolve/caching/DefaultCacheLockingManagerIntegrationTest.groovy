@@ -198,7 +198,7 @@ class DefaultCacheLockingManagerIntegrationTest extends AbstractHttpDependencyRe
     }
 
     TestFile getCacheDir() {
-        return executer.gradleUserHomeDir.file("caches", "modules-2")
+        return executer.gradleUserHomeDir.file("caches", "modules-3")
     }
 
     void markForCleanup(File file) {

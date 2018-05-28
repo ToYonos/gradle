@@ -1147,7 +1147,7 @@ group:projectB:2.2;release
         run '--stop'
         // bust the artifact cache because we don't want to fall into the smart behavior
         // of reusing metadata from cache for a different repository
-        new File(executer.gradleUserHomeDir, 'caches/modules-2').deleteDir()
+        new File(executer.gradleUserHomeDir, 'caches/modules-3').deleteDir()
 
         resetExpectations()
         // Changing the host makes Gradle consider that the 2 repositories are distinct

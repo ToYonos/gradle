@@ -56,7 +56,7 @@ class ParallelDownloadsPerformanceTest extends AbstractCrossVersionPerformanceTe
             }
 
             private void cleanupCache(File userHomeDir) {
-                ['modules-2', 'external-resources'].each {
+                ['modules-3', 'external-resources'].each {
                     new File("$userHomeDir/caches/$it").deleteDir()
                 }
             }

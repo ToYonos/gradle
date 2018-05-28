@@ -20,9 +20,9 @@ import org.gradle.util.VersionNumber;
 import java.io.File;
 
 public enum CacheLayout {
-    ROOT(null, "modules", 2),
+    ROOT(null, "modules", 3),
     FILE_STORE(ROOT, "files", 1),
-    META_DATA(ROOT, "metadata", 58),
+    META_DATA(ROOT, "metadata", 1),
     RESOURCES(ROOT, "resources", 1),
     TRANSFORMS(null, "transforms", 1),
     TRANSFORMS_META_DATA(TRANSFORMS, "metadata", 1),

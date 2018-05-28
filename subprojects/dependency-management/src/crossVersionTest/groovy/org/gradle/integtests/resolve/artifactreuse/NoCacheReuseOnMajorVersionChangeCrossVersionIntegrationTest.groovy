@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 the original author or authors.
+ * Copyright 2018 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,15 +20,11 @@ package org.gradle.integtests.resolve.artifactreuse
 import org.gradle.api.internal.artifacts.ivyservice.DefaultArtifactCacheMetadata
 import org.gradle.integtests.fixtures.IgnoreVersions
 
-@IgnoreVersions({
-    it.artifactCacheLayoutVersion != DefaultArtifactCacheMetadata.CACHE_LAYOUT_VERSION ||
-        it.artifactCacheLayoutVersion.major != DefaultArtifactCacheMetadata.CACHE_LAYOUT_VERSION.major
-})
-class SameCacheUsageCrossVersionIntegrationTest extends AbstractCacheReuseCrossVersionIntegrationTest {
-    def "incurs zero remote requests when cache version not upgraded"() {
+@IgnoreVersions({ it.artifactCacheLayoutVersion.major == DefaultArtifactCacheMetadata.CACHE_LAYOUT_VERSION.major })
+class NoCacheReuseOnMajorVersionChangeCrossVersionIntegrationTest extends AbstractCacheReuseCrossVersionIntegrationTest {
+    def "redownloads everything when major version changes"() {
         given:
         def projectB = mavenHttpRepo.module('org.name', 'projectB', '1.0').publish()
-        server.sendSha1Header = false
         buildFile << """
 repositories {
     maven { url '${mavenHttpRepo.uri}' }
@@ -58,7 +54,8 @@ task retrieve(type: Sync) {
 
         when:
         server.resetExpectations()
-        //expect no http requests
+        projectB.pom.expectGet()
+        projectB.artifact.expectGet()
 
         and:
         version current withGradleUserHomeDir userHome withTasks 'retrieve' withArguments '-i' run()
